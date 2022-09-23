@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import Character from './character.components';
 
 const Characters = () => {
-  const [page, setPage] = useState(42);
+  const [page, setPage] = useState(1);
 
   const fetchCharacters = async ({ queryKey }: any) => {
     const response = await fetch(
@@ -21,7 +21,7 @@ const Characters = () => {
     }
   );
 
-  console.log(isPreviousData);
+  console.log(data);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -38,7 +38,12 @@ const Characters = () => {
           <Character character={character} />
         ))}
       </div>
-      <div>
+      <div className="center">
+        <h2>{data.info.pages} pages</h2>
+
+        <h2>Current Page - {page} </h2>
+      </div>
+      <div className="buttons">
         <button disabled={page === 1} onClick={() => setPage((old) => old - 1)}>
           Prev
         </button>
