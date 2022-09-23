@@ -1,7 +1,18 @@
+import './App.css';
+import Characters from './components/characters.components';
+// Query Client insantiates a new client
+import { QueryClientProvider, QueryClient } from 'react-query';
+
+const queryClient = new QueryClient();
+
 export default function App() {
   return (
     <>
-      <h1 className="">Hello World</h1>
+      <div className="App">
+        <QueryClientProvider client={queryClient}>
+          <Characters />
+        </QueryClientProvider>
+      </div>
     </>
   );
 }
